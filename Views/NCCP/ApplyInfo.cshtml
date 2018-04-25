@@ -1,0 +1,90 @@
+﻿<script type="text/javascript">
+    $(function () {
+        var apply_id = '@ViewBag.apply_id';
+        $("#dg3").datagrid({
+            nowrap: true,
+            idField: 'id',
+            height: 260,
+            url: '/nccp/ApplyInfo/?apply_id=' + apply_id,
+            loadMsg: '数据加载中.....',
+            pagination: true,
+            rownumbers: true,
+            singleSelect: true,
+            pageSize: 20,
+            pageList: [20, 30, 50],
+            striped: true,
+            columns: [[
+                { title: 'id', field: 'id', hidden: true, align: 'center', width: 200 },
+                { title: 'apply_id', field: 'apply_id', hidden: true, align: 'center', width: 200 },
+                { title: '请求单号', field: 'apply_number', align: 'center', width: 200 },
+                { title: '类型', field: 'type', align: 'center', width: 200 },
+                { title: '性质', field: 'nature', align: 'center', width: 200 },
+                { title: '被扣划人姓名', field: 'nccp_man_name', align: 'center', width: 200 },
+                { title: '证件类型', field: 'ID_type', align: 'center', width: 200 },
+                { title: '被扣划人证件/组织机构号码', field: 'nccp_man_ID_number', align: 'center', width: 200 },
+                { title: '执行法院名称', field: 'zxfy_name', align: 'center', width: 200 },
+                { title: '执行法院代码', field: 'zxfy_code', align: 'center', width: 200 },
+                { title: '承办法官', field: 'cbfg', align: 'center', width: 200 },
+                { title: '承办法官联系电话', field: 'cbfg_phone', align: 'center', width: 200 },
+                { title: '执行案号', field: 'zxah', align: 'center', width: 200 },
+                { title: '承办法官工作证编号', field: 'cbfggzz_code', align: 'center', width: 200 },
+                { title: '承办法官公务证编号', field: 'cbfggwz_code', align: 'center', width: 200 },
+                { title: '协助扣划通知书号', field: 'xzkhtzs_name', align: 'center', width: 200 },
+                { title: '承办人联系地址', field: 'cbr_address', align: 'center', width: 200 },
+                { title: '备注', field: 'remark', align: 'center', width: 200 },
+                {
+                    title: '控制账户', field: 'control_account', align: 'center', width: 200, formatter: function (val, row) {
+                        return "<button style=\"cursor:pointer;\" onclick=\"account_info(" + row.apply_id + ")\">" + val + "</button>";
+                    }
+                }
+
+            ]],
+            onLoadError: function () { $.messager.alert('系统错误', '读取远程数据失败!', 'warning'); },
+            onLoadSuccess: function (data) {
+
+            }
+        });
+        var p = $('#dg3').datagrid('getPager');
+        $(p).pagination({
+            beforePageText: '第 ',
+            afterPageText: ' 页 共 {pages} 页',
+            displayMsg: '从 第 {from} 条到 {to} 条 共 {total} 条'
+        });
+
+
+    });
+
+    var account_info = function (id) {
+        var width = window.screen.width; //获取屏幕宽度
+        var height = "";
+        var widthtan = ""
+        if (width <= 1920) {
+            height = "90%";
+            widthtan = "90%";
+        }
+        
+        if (width <= 1366) {
+            height = "90%";
+            widthtan = "97%";
+        }
+        $("#dialog_account_info").dialog({
+            title: "账号信息",
+            width: widthtan,
+            height: height,
+            closed: false,
+            cashe: false,
+            href: '/nccp/AccountInfo?apply_id=' + id,
+            modal: true,
+            buttons: [
+                    {
+                        text: "关闭",
+                        handler: function () {
+                            $("#dialog_account_info").dialog('close');
+                        }
+                    }]
+        });
+    }
+
+</script>
+<table id="dg3"></table>
+<div id="dialog_account_info"></div>

@@ -1,0 +1,461 @@
+﻿<style type="text/css">
+    /*授权表格样式*/
+
+    .sq_table {
+        min-height: 300px;
+        border-bottom: 2px solid #8a9294;
+        margin-right: 3px;
+        overflow-x: auto;
+    }
+
+        .sq_table table {
+            border: none;
+            border-spacing: 0px 0px;
+            white-space: nowrap;
+            width: auto;
+        }
+
+            .sq_table table th {
+                color: #ffffff;
+                text-align: center;
+                padding: 5px 10px;
+                background: #385a7f;
+                background: -webkit-linear-gradient(top, #385a7f, #437fb1);
+                background: -o-linear-gradient(top, #385a7f, #437fb1);
+                background: -moz-linear-gradient(top, #385a7f, #437fb1);
+              
+                border-right: 1px solid white;
+            }
+
+
+            .sq_table table tr {
+                background-color: #e8ecf5;
+            }
+
+                .sq_table table tr td {
+                    text-align: center;
+                    padding: 5px 5px;
+                    border: 1px solid #263441;
+                }
+
+                .sq_table table tr:hover {
+                    background-color: #d0d8e3;
+                }
+    /*表格样式结束*/
+
+
+    .chaxun_map {
+        border: 2px solid #8393a2; 
+    }
+
+    .shoufei_map {
+        padding: 15px;
+        border-radius: 5px;
+        border: 2px solid #8393a2;
+    }
+
+    .heji {
+        padding: 5px 0px;
+        color: #747273;
+        text-indent: 10px;
+        font-weight: 600;
+        background-color: #efeeec;
+        border: 1px solid #8393a2;
+        margin-top: 5px;
+    }
+
+    .shoufei_ico {
+        background-color: #f0f7ff;
+        padding: 5px;
+    }
+
+        .shoufei_ico label {
+            margin-right: 15px;
+            padding-right: 15px;
+            border-right: 1px solid #ced7d6;
+        }
+
+            .shoufei_ico label img {
+                cursor: pointer;
+            }
+
+    .sousuo {
+        height: 20px;
+        width: 60px;
+        margin-right: 15px;
+    }
+
+    .fenye {
+        text-align: center;
+        padding: 5px 0px;
+        background-color: #eff6fe;
+    }
+
+    .fenye_bt {
+        cursor: pointer;
+        border: 1px solid #b8b7b5;
+        padding: 5px;
+        margin-right: 15px;
+    }
+
+        .fenye_bt:hover {
+            background-color: #fefaf9;
+        }
+
+    .yema {
+        border: 1px solid #b8b7b5;
+        width: 45px;
+        height: 28px;
+        margin-right: 15px;
+        background: none;
+    }
+
+    .dayinbtn {
+        cursor: pointer;
+        float: right;
+        margin-right: 5px;
+    }
+</style>
+
+<div class="chaxun_map">
+    @if (!string.IsNullOrEmpty(Request["toolbar"]) && Convert.ToBoolean(Request["toolbar"]))
+    {
+    <div class="shoufei_ico">
+        <label><img src="/Image/shoufei1.png" /></label>
+        <label><img src="/Image/shoufei2.png" /></label>
+        <label><img src="/Image/shoufei3.png" /></label>
+        <label><img src="/Image/shoufei4.png" /></label>
+        <label><img src="/Image/shoufei5.png" /></label>
+        <label><img src="/Image/shoufei6.png" /></label>
+        <label><img src="/Image/shoufei7.png" /></label> 
+        <input class="/Image/sousuo" type="text" name="" id="" value="" />
+        <label><img src="/Image/shoufei8.png" /></label> 
+        <label style="border: none;"><img src="/Image/shoufei9.png" /></label> 
+    </div>
+    }
+    <div class="sq_table">
+        <table border="0" cellspacing="0" cellpadding="0" id="common_table">
+
+            @*  <tr>
+                <th>账号/卡号</th>
+                <th>账户名称</th>
+                <th>序号</th>
+                <th>冻结序号</th>
+                <th>划扣日期</th>
+                <th>划扣类型</th>
+                <th>划扣金额</th>
+                <th>实际划扣金额</th>
+                <th>权利机关类型</th>
+
+                <th>划扣金额</th>
+                <th>实际划扣金额</th>
+                <th>权利机关类型</th>
+
+                <th>划扣金额</th>
+                <th>实际划扣金额</th>
+                <th>权利机关类型</th>
+
+                <th>划扣金额</th>
+                <th>实际划扣金额</th>
+                <th>权利机关类型</th>
+                <th>划扣金额</th>
+                <th>实际划扣金额</th>
+                <th>权利机关类型</th>
+
+                <th>划扣金额</th>
+                <th>实际划扣金额</th>
+                <th>权利机关类型</th>
+                <th>划扣金额</th>
+                <th>实际划扣金额</th>
+                <th>权利机关类型</th>
+            </tr>
+            <tr style="background-color: #d0d8e3;">
+                <td>411303199114514</td>
+                <td>5</td>
+                <td>N-未授权</td>
+                <td>L-本地授权</td>
+                <td>Z6-6级</td>
+                <td>人民法院</td>
+                <td>文字内容</td>
+                <td>数据信息</td>
+                <td>54566</td>
+
+
+                <td>L-本地授权</td>
+                <td>Z6-6级</td>
+                <td>人民法院</td>
+                <td>文字内容</td>
+                <td>数据信息</td>
+                <td>54566</td>
+
+
+                <td>L-本地授权</td>
+                <td>Z6-6级</td>
+                <td>人民法院</td>
+                <td>文字内容</td>
+                <td>数据信息</td>
+                <td>54566</td>
+
+                <td>L-本地授权</td>
+                <td>Z6-6级</td>
+                <td>人民法院</td>
+                <td>文字内容</td>
+                <td>数据信息</td>
+                <td>54566</td>
+
+
+            </tr>
+            <tr>
+                <td>411303199114514</td>
+                <td>5</td>
+                <td>N-未授权</td>
+                <td>L-本地授权</td>
+                <td>Z6-6级</td>
+                <td>人民法院</td>
+                <td>文字内容</td>
+                <td>数据信息</td>
+                <td>54566</td>
+
+
+                <td>L-本地授权</td>
+                <td>Z6-6级</td>
+                <td>人民法院</td>
+                <td>文字内容</td>
+                <td>数据信息</td>
+                <td>54566</td>
+
+
+                <td>L-本地授权</td>
+                <td>Z6-6级</td>
+                <td>人民法院</td>
+                <td>文字内容</td>
+                <td>数据信息</td>
+                <td>54566</td>
+
+                <td>L-本地授权</td>
+                <td>Z6-6级</td>
+                <td>人民法院</td>
+                <td>文字内容</td>
+                <td>数据信息</td>
+                <td>54566</td>
+
+
+            </tr>*@
+
+        </table>
+
+    </div> 
+
+    @if (string.IsNullOrEmpty(Request["is_page"]) || Convert.ToBoolean(Request["is_page"]))
+    {
+        <!--分页区域-->
+        <div class="fenye">
+            <label class="fenye_bt" id="page_first">
+                <img src="/Image/fenyezuo.png" />
+            </label>
+            <label class="fenye_bt" id="page_prev">
+                <img src="/Image/fenyezuo2.png" />
+            </label>
+            <span style="margin-right: 15px;" id="page_state">00/00</span>
+            <label class="fenye_bt" id="page_next">
+                <img src="/Image/fenyeyou2.png" />
+            </label>
+            <label class="fenye_bt" id="page_last">
+                <img src="/Image/fenyeyou.png" />
+            </label>
+
+            <input class="yema" type="text" name="" id="go_index" value="0" style="text-align: center;" />
+            <label class="fenye_bt" id="goto_page">
+                <img src="/Image/fenyefanhui.png" />
+            </label>
+
+            <input name="page_total" type="hidden" />
+            <input name="page_index" type="hidden" />
+            @* <img class="dayinbtn" src="/Image/dayinico.png" />*@
+        </div>
+    }
+</div>
+<script src="~/Script/jquery-3.2.0.js"></script>
+<script src="~/Script/url_helper.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var url = new LG.URL(location.href);
+        $("#page_first").click(function () {
+            //首页 
+            var page = Number($("input[name=page_index]").val());
+
+            if (page == 1) {
+                return;
+            }
+            url.set("page", 1);
+            location.href = url.url()
+        });
+
+        $("#page_prev").click(function () {
+            //上一页
+            var page = Number($("input[name=page_index]").val());
+            if (page <= 1) {
+                page = 1;
+                $("input[name=page_index]").val(page);
+                return;
+            }
+            page--;
+            url.set("page", page);
+            location.href = url.url()
+        });
+
+        $("#page_next").click(function () {
+            //下一页
+            var page = Number($("input[name=page_index]").val());
+            var total = Number($("input[name=page_total]").val());
+            
+            if (page >= total) {
+                page = total;
+                $("input[name=page_index]").val(page);
+                return;
+            }
+            page++; 
+            url.set("page", page);
+            location.href = url.url()
+        });
+
+        $("#page_last").click(function () {
+            //末页
+            var page = Number($("input[name=page_index]").val());
+            var total = Number($("input[name=page_total]").val());
+            if (page == total) {
+                return;
+            }
+            url.set("page", total);
+            location.href = url.url()
+        });
+
+        $("#goto_page").click(function () {
+            //跳页
+            var total = Number($("input[name=page_total]").val());
+            var page = Number($("input[name=page_index]").val());
+            var go_index = Number($("#go_index").val());
+            if (go_index == page) {
+                return;
+            }
+            if (go_index <= 1) {
+                go_index = 1;
+            }
+            if (go_index >= total) {
+                go_index = total;
+            }
+            url.set("page", go_index);
+            location.href = url.url()
+        });
+
+
+        // number|序号,result|授权结果,way|授权方式
+
+        var is_page = '@Request["is_page"]';//是否分页
+        var page = '@Request["page"]';//页码
+        var pagesize = '@Request["pagesize"]';//页容量
+
+        var table = '@Request["table"]';
+        var where = decodeURI('@Request["where"]');
+        var orderby = '@Request["orderby"]';
+        var fields = decodeURI('@Request["fields"]');
+        var date_format = decodeURI('@Request["date_format"]');
+
+        if (fields != "" && fields != null && fields != "undefined") {
+
+            var array1 = fields.split(',');
+            var fields = [];
+            var columns = [];
+            for (var i = 0; i < array1.length; i++) {
+                fields.push(array1[i].split('|')[0]);
+                columns.push(array1[i].split('|')[1]);
+            }
+
+            var table_html = "<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+            table_html += "<tr>";
+            for (var i = 0; i < columns.length; i++) {
+                table_html += "<th data-field=\"" + fields[i] + "\">" + columns[i] + "</th>";
+            }
+            table_html += "</tr>";
+
+
+            var field_str = "";
+            for (var i = 0; i < fields.length; i++) {
+                field_str += ',' + fields[i];
+            }
+            field_str = field_str.substring(1);
+
+            var postdata = {};
+            postdata.where = where;
+            postdata.fields = field_str;
+            postdata.orderby = orderby;
+            postdata.table = table;
+            postdata.page = page;
+            postdata.pagesize = pagesize;
+            postdata.date_format = date_format;
+            postdata.is_page = is_page;
+
+            $.ajax({
+                url: "/CommonTable/LoadTableData/",
+                data: postdata,
+                type: "post",
+                dataType: "json",
+                success: function (data) {
+                    if (data.succ != undefined && !data.succ) {
+                        alert(data.msg);
+                    } else {
+                        if (data.Tb.length > 0) {
+                            var rows_html = "";
+                            for (var i = 0; i < data.Tb.length; i++) {
+                                rows_html += "<tr>";
+                                for (var j = 0; j < fields.length; j++) {
+                                    rows_html += "<td>" + data.Tb[i][fields[j]] + "</td>";
+                                }
+                                rows_html += "</tr>";
+                            }
+                            $("#common_table").append(rows_html);
+                            $("#page_state").text(data.PageIndex + "/" + data.PageTotal);
+
+                            $("input[name=page_total]").val(data.PageTotal);
+                            $("input[name=page_index]").val(data.PageIndex);
+                            $("#go_index").val(data.PageIndex);
+                        }
+                    }
+                },
+                error: function (r) { },
+                beforeSend: function () { },
+                complete: function () { }
+            });
+
+            table_html += "</table>";
+            $("#common_table").html(table_html);
+        }
+
+
+
+
+    });
+</script>
+
+<script>
+    var width = window.screen.width;   //获取屏幕宽度
+    if (width == 1920) {
+        document.getElementsByTagName('body')[0].style.zoom = 1;
+    }
+    if (width <= 1366) {
+        if (!isIE()) {
+            document.getElementsByTagName('body')[0].style.zoom = 0.70;
+        } else {
+            $(".sq_table").css("font-size", "13px");
+            $("th").css("background", "red");
+           
+        }
+    }
+    function isIE() { //ie?
+        if (!!window.ActiveXObject || "ActiveXObject" in window)
+            return true;
+        else
+            return false;
+    }
+
+</script>

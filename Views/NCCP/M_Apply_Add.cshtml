@@ -1,0 +1,117 @@
+﻿@{
+    ViewBag.Title = "M_Apply_Add";
+}
+<script src="~/Script/jquery-3.2.0.js"></script>
+<script src="~/Script/webuploader/webuploader.min.js"></script>
+<link href="~/Script/webuploader/webuploader.css" rel="stylesheet" />
+<script src="~/Script/webuploader.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $(".upload-img").InitUploader({ filesize: "20480", sendurl: "/upload/do/?do=upload&sign=nccp_apply&rename=false", swf: "/Script/webuploader/uploader.swf", filetypes: "zip,doc,docx,xls,xlsx" });
+        $(".upload-img2").InitUploader({ filesize: "20480", sendurl: "/upload/do/?do=upload&sign=nccp_apply", swf: "/Script/webuploader/uploader.swf", filetypes: "csv,txt" });
+        $(".upload-img3").InitUploader({ filesize: "20480", sendurl: "/upload/do/?do=upload&sign=nccp_apply&rename=false", swf: "/Script/webuploader/uploader.swf", filetypes: "zip,doc,docx,xls,xlsx" });
+
+        $(".save").click(function () {
+            var upload_path_01 = $("#upload_path_01").val();
+            var control_type = $("#control_type").val();
+            var examid = $("#examid").val();
+            var upload_path_02 = $("#upload_path_02").val();
+            var upload_path_03 = $("#upload_path_03").val();
+
+            if (upload_path_01 == "" || upload_path_01 == null) {
+                alert("请上传司法扣划请求文件");
+                return;
+            }
+            if (upload_path_02 == "" || upload_path_02 == null) {
+                alert("请导入请求信息和账号信息");
+                return;
+            }
+            if (upload_path_03 == "" || upload_path_03 == null) {
+                alert("请上传扣划信息文件");
+                return;
+            }
+
+            $.ajax({
+                url: "/nccp/m_apply_add/",
+                data: { upload_path_01: upload_path_01, control_type: control_type, examid: examid, upload_path_02: upload_path_02, upload_path_03: upload_path_03 },
+                type: "post",
+                dataType: "json",
+                success: function (data) {
+                    if (data.succ) { 
+                        alert("保存成功");
+                        $("#upload_path_01").val("");
+                        $("#upload_path_02").val("");
+                        $("#upload_path_03").val("");
+                        
+                    }
+                },
+                error: function (r) { },
+                beforeSend: function () { },
+                complete: function () { }
+            });
+        });
+    });
+</script>
+
+
+<div class="case">
+    <ul class="ul_01">
+        <li>上传司法扣划请求文件：</li>
+        <li>控制类型：</li>
+        <li>导入请求信息和账号信息：</li>
+        <li>上传扣划信息文件：</li>
+    </ul>
+    <ul class="ul_02">
+        <li>
+            <input type="text" id="upload_path_01" class="upload-name" readonly="readonly" style="height: 27px; width: 200px; border: 1px solid #E1E1E1; padding-left: 5px;" />
+            <div class="upload-box upload-img"></div>
+        </li>
+        <li>
+            <input id="control_type" type="text" style="height: 27px; width: 200px; border: 1px solid #E1E1E1; padding-left: 5px;" readonly="readonly" value="扣划" /></li>
+        <li>
+            <input type="text" id="upload_path_02" class="upload-name" readonly="readonly" style="height: 27px; width: 200px; border: 1px solid #E1E1E1; padding-left: 5px;" />
+            <div class="upload-box upload-img2"></div>&nbsp;&nbsp;<a style="color:black; font-size:13px;" href="/Download/导入扣划信息模板.csv">下载模板</a>
+        </li>
+        <li>
+            <input type="text" id="upload_path_03" class="upload-name" readonly="readonly" style="height: 27px; width: 200px; border: 1px solid #E1E1E1; padding-left: 5px;" />
+            <div class="upload-box upload-img3"></div>
+        </li>
+        <li>
+            <a href="javascript:void(0)" class="save" style="background-color: #1ab394; border-color: #1ab394; color: #ffffff; border-radius: 3px; font-size: 12px; line-height: 1.5; padding: 5px 10px; text-decoration:none;">保存</a>
+        </li>
+
+    </ul>
+    <input type="hidden"  value="@Request["examid"]" id="examid"/>
+</div>
+
+<style type="text/css">
+    .case * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .case {
+        float: left;
+        width: 800px;
+        margin-top: 20px;
+    }
+
+    .ul_01 {
+        width: 200px;
+        float: left;
+        text-align: right;
+    }
+
+    .ul_02 {
+        width: 400px;
+        float: left;
+    }
+
+        .ul_01 li, .ul_02 li {
+            height: 30px;
+            line-height: 30px;
+            list-style: none;
+            margin: 5px 0;
+        }
+</style>

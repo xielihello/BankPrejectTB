@@ -1,0 +1,18 @@
+﻿<script src="~/Script/jquery-3.2.0.js"></script>
+<script src="~/Script/webuploader/webuploader.min.js"></script>
+<link href="~/Script/webuploader/webuploader.css" rel="stylesheet" />
+<script src="~/Script/webuploader.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        //$(".upload-img").InitUploader({ filesize: "2048", sendurl: "http://192.168.1.6:8104/upload/do/", swf: "/Script/webuploader/uploader.swf", filetypes: "xls" });
+        $(".upload-img").InitUploader({ filesize: "2048", sendurl: "/upload/do/?do=import&sign=import_char", swf: "/Script/webuploader/uploader.swf", filetypes: "xls" });
+    });
+</script>
+<div style=" margin-top:30px; margin-left:30px;"> 
+    <input type="text" class="upload-name" readonly="readonly" style="height: 27px; width: 200px; border: 1px solid #E1E1E1; padding-left: 5px;" />
+    <div class="upload-box upload-img"></div>
+    <br />
+    <br />
+    <a href="/Download/打字测速后台导入模板.xls">下载模板</a>
+</div>

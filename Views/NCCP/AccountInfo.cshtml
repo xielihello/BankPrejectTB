@@ -1,0 +1,188 @@
+﻿<script type="text/javascript">
+    $(function () {
+
+        var apply_id = '@ViewBag.apply_id';
+        $("#dg4").datagrid({
+            nowrap: true,
+            idField: 'id',
+            height: 260,
+            url: '/nccp/AccountInfo/?apply_id=' + apply_id,
+            loadMsg: '数据加载中.....',
+            pagination: true,
+            rownumbers: true,
+            singleSelect: true,
+            pageSize: 20,
+            pageList: [20, 30, 50],
+            striped: true,
+            columns: [[
+                { title: 'id', field: 'id', hidden: true, align: 'center', width: 200 },
+                { title: 'apply_id', field: 'apply_id', hidden: true, align: 'center', width: 200 },
+                { title: '请求单号', field: 'apply_number', align: 'center', width: 200 },
+                { title: '序号', field: 'serial_number', align: 'center', width: 200 },
+                { title: '控制类型', field: 'control_type', align: 'center', width: 200 },
+                { title: '控制措施', field: 'control_measures', align: 'center', width: 200 },
+                { title: '开户账号', field: 'account', align: 'center', width: 200 },
+                { title: '账户类别', field: 'account_type', align: 'center', width: 200 },
+                { title: '开户网点', field: 'account_net_point', align: 'center', width: 200 },
+                { title: '开户网点代码', field: 'account_net_point_code', align: 'center', width: 200 },
+                { title: '金融资产名称', field: 'jrzc_name', align: 'center', width: 200 },
+                { title: '金融资产类型', field: 'jrzc_type', align: 'center', width: 200 },
+                { title: '计量单位', field: 'unit', align: 'center', width: 200 },
+                { title: '申请控制内容', field: 'sqkznr', align: 'center', width: 200 },
+                { title: '申请扣划时间', field: 'sqkhsj', align: 'center', width: 200 },
+                { title: '申请扣划金额币种', field: 'sqkhjebz', align: 'center', width: 200 },
+                { title: '申请扣划金额', field: 'sqkhje', align: 'center', width: 200 },
+                { title: '是否结汇', field: 'sfjh', align: 'center', width: 200 },
+                { title: '裁定书文号', field: 'cdwsh', align: 'center', width: 200 },
+                { title: '执行款专户户名', field: 'zxkzhhm', align: 'center', width: 200 },
+                { title: '执行款专户开户行号', field: 'zxkzhkhhhh', align: 'center', width: 200 },
+                { title: '执行款专户开户行', field: 'zxkzhkhh', align: 'center', width: 200 },
+                { title: '执行款专户账号', field: 'zxkzhzh', align: 'center', width: 200 },
+                { title: '执行款专户类型', field: 'zxkzhlx', align: 'center', width: 200 },
+                { title: '原冻结案号', field: 'ydjah', align: 'center', width: 200 },
+                { title: '原冻结请求单号', field: 'ydjqqdh', align: 'center', width: 200 },
+                { title: '执行状态', field: 'zxzt', align: 'center', width: 200 },
+                { title: '原冻结序号', field: 'ydjxh', align: 'center', width: 200 },
+                { title: '原冻结方式', field: 'ydjfs', align: 'center', width: 200 },
+                { title: '原冻结时间', field: 'ydjsj', align: 'center', width: 200 },
+                { title: '流水号', field: 'lsh', align: 'center', width: 200 },
+                {
+                    title: '下载扣划信息', field: 'apply_download', align: 'center', width: 200, formatter: function (val, row) {
+                        //return "<button onclick=\"javascript:location.href='" + row.download_path + "'\" style=\"cursor:pointer;\">" + val + "</button>";
+                        return "<button onclick=\"download(this," + row.id + ",'" + row.download_path + "')\" style=\"cursor:pointer;\">" + val + "</button><button onclick=\"download(" + row.id + ",'" + row.download_path + "')\" style=\"cursor:pointer; display:none;\" disabled=\"disabled\">已下载</button>";
+                    }
+                },
+                {
+                    title: '扣划结果反馈', field: 'submit_result', align: 'center', width: 200, formatter: function (val, row) {
+                        return "<button style=\"cursor:pointer;\" onclick=\"submit_result(" + row.apply_id + ")\">" + val + "</button>";
+                    }
+                }
+
+            ]],
+            onLoadError: function () { $.messager.alert('系统错误', '读取远程数据失败!', 'warning'); },
+            onLoadSuccess: function (data) {
+
+            }
+        });
+        var p = $('#dg4').datagrid('getPager');
+        $(p).pagination({
+            beforePageText: '第 ',
+            afterPageText: ' 页 共 {pages} 页',
+            displayMsg: '从 第 {from} 条到 {to} 条 共 {total} 条'
+        });
+
+
+    });
+
+    var submit_result = function (id) {
+
+        var width = window.screen.width; //获取屏幕宽度
+        var height = "";
+        var widthtan = ""
+        if (width <= 1920) {
+            height = "90%";
+            widthtan = "90%";
+        }
+        if (width <= 1366) {
+            height = "90%";
+            widthtan = "97%";
+        }
+        var formid = $("#formid").val();
+        var tellerId = $("#tellerId").val();
+        var examid2 = $("#examid2").val();
+        var banksiteid = $("#banksiteid").val();
+        var DepartmentId = $("#DepartmentId").val();
+        var planid = $("#planid").val();
+
+        //var href = 'http://192.168.1.6:3000/User/indexone?formid=' + formid + '&tellerId=' + tellerId + '&examid=' + examid2 + '&banksiteid=' + banksiteid + '&DepartmentId=' + DepartmentId + '&planid=' + planid + '&apply_id=' + id;
+ 
+        var fujian_download_sign = sessionStorage.fujian_download_sign == undefined ? false : sessionStorage.fujian_download_sign;
+        var khinfo_download_sign = sessionStorage.khinfo_download_sign == undefined ? false: sessionStorage.khinfo_download_sign;
+
+        var href = 'http://localhost:3000/User/indexone?formid=' + formid + '&tellerId=' + tellerId + '&examid=' + examid2 + '&banksiteid=' + banksiteid + '&DepartmentId=' + DepartmentId + '&planid=' + planid + '&apply_id=' + id + "&fj_download=" + fujian_download_sign + "&khinfo_download=" + khinfo_download_sign;
+        var content = '<iframe src="' + href + '" width="100%" height="99%" frameborder="0"></iframe>';
+        $("#dialog_submit_result").dialog({
+            title: "结果提交",
+            width: widthtan,
+            height: height,
+            closed: false,
+            cashe: false,
+            content: content,
+            modal: true 
+        });
+    }
+
+    var download = function (obj, id, url) {
+        $(obj).hide();
+        $(obj).next().show();
+        sessionStorage.khinfo_download_sign = true;
+        location.href = url;
+
+    }
+
+
+    //http://192.168.1.6:3000/User/indexone?formid=010501&tellerId=106&examid=25&banksiteid=94&DepartmentId=3&planid=21
+    //var submit_result = function (id) {
+    //    $("#dialog_submit_result").dialog({
+    //        title: "结果提交",
+    //        width: 550,
+    //        height: 500,
+    //        closed: false,
+    //        cashe: false,
+    //        href: '/nccp/SubmitResult/?apply_id=' + id,
+    //        modal: true,
+    //        buttons: [
+    //                {
+    //                    text: "提交",
+    //                    handler: function () {
+    //                        var deduct_result = $("select[name=deduct_result]").val();
+    //                        var deduct_amount = $("input[name=deduct_amount]").val();
+    //                        var deduct_failed_reason = $("input[name=deduct_failed_reason]").val();
+    //                        var remark = $("input[name=remark]").val();
+    //                        if (deduct_result == "-1") {
+    //                            $.messager.alert("提示", "请选择扣划结果");
+    //                            return;
+    //                        }
+    //                        if (deduct_result == "成功" && (deduct_amount == "" || deduct_amount == null)) {
+    //                            $.messager.alert("提示", "请输入扣划金额");
+    //                            return;
+    //                        }
+    //                        if (deduct_result == "失败" && (deduct_failed_reason == "" || deduct_failed_reason == null)) {
+    //                            $.messager.alert("提示", "请输入扣划失败原因");
+    //                            return;
+    //                        } 
+    //                        var postdata = { apply_id: id, deduct_result: deduct_result, deduct_amount: deduct_amount, deduct_failed_reason: deduct_failed_reason, remark: remark };
+
+    //                        $.ajax({
+    //                            url: "/nccp/SaveDeductResult/",
+    //                            type: "post",
+    //                            data: postdata,
+    //                            dataType: "json",
+    //                            success: function (data) {
+    //                                $.messager.alert("提示","提交成功");
+    //                                $("#dialog_submit_result").dialog('close');
+    //                            },
+    //                            error: function () {
+    //                                $.messager.alert("提示", "出错了");
+    //                            }
+    //                        });
+    //                    }
+    //                },
+    //                {
+    //                    text: "关闭",
+    //                    handler: function () {
+    //                        $("#dialog_submit_result").dialog('close');
+    //                    }
+    //                }]
+    //    });
+    //}
+
+</script>
+<table id="dg4"></table>
+<div id="dialog_submit_result"></div>
+<input type="hidden" id="formid" value="@ViewBag.userdata.formid" />
+<input type="hidden" id="tellerId" value="@ViewBag.userdata.tellerId"/>
+<input type="hidden" id="examid2" value="@ViewBag.userdata.examid"/>
+<input type="hidden" id="banksiteid" value="@ViewBag.userdata.banksiteid"/>
+<input type="hidden" id="DepartmentId" value="@ViewBag.userdata.DepartmentId"/>
+<input type="hidden" id="planid" value="@ViewBag.userdata.planid"/>

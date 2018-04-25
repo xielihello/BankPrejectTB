@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "SubmitResult";
+}
+
+<div style="margin: 0 auto; width: 450px; margin-top: 20px;">
+    <ul class="ul_01">
+        <li>扣划文件名：</li>
+        <li>扣划请求单号：</li>
+        <li>序号：</li>
+        <li>原冻结序号：</li>
+        <li>开户账号：</li>
+        <li>开户网点代码：</li>
+        <li>扣划结果：</li>
+        <li>账户余额：</li>
+        <li>可用余额：</li>
+        <li>扣划日期：</li>
+        <li>扣划限额：</li>
+        <li>实际扣划金额：</li>
+        <li>未能扣划原因：</li>
+        <li>备注：</li>
+    </ul>
+    <ul class="ul_02">
+        <li>
+            <input type="text" value="@ViewBag.file.file_name" /></li>
+        <li>
+            <input type="text" value="@ViewBag.file.apply_number" /></li>
+        <li>
+            <input type="text" value="@ViewBag.account_info.serial_number" /></li>
+        <li>
+            <input type="text" value="@ViewBag.account_info.ydjxh" /></li>
+        <li>
+            <input type="text" value="@ViewBag.account_info.account" /></li>
+        <li>
+            <input type="text" value="@ViewBag.account_info.account_net_point_code" /></li>
+        <li>
+            <select name="deduct_result">
+                <option value="-1">请选择</option>
+                <option value="成功">成功</option>
+                <option value="失败">失败</option>
+            </select>
+        </li>
+        <li>
+            <input type="text" placeholder="选填项" /></li>
+        <li>
+            <input type="text" placeholder="选填项"  /></li>
+        <li>
+            <input type="text" placeholder="选填项"  /></li>
+        <li>
+            <input type="text" placeholder="选填项"  /></li>
+        <li>
+            <input type="text" name="deduct_amount" /></li>
+        <li>
+            <input type="text" name="deduct_failed_reason" /></li>
+        <li>
+            <input type="text" placeholder="选填项" name="remark" /></li>
+    </ul>
+</div>
+<style type="text/css">
+    .ul_01, .ul_02 {
+        float: left;
+        height: 400px;
+    }
+
+    .ul_01 {
+        width: 100px;
+    }
+
+    .ul_02 {
+        width: 300px;
+    }
+
+        .ul_01 li, .ul_02 li {
+            height: 25px;
+            line-height: 25px;
+        }
+
+    .ul_01 li {
+        text-align: right;
+    }
+
+    .ul_02 li input,.ul_02 li select {
+        padding-left: 5px;
+        width:300px;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $("select[name=deduct_result]").change(function () {
+            var val = $(this).val();
+            if (val=="-1") {
+                $("input[name=deduct_amount]").removeAttr("disabled");
+                $("input[name=deduct_failed_reason]").removeAttr("disabled");
+            } else if (val == "成功") {
+                $("input[name=deduct_amount]").removeAttr("disabled");
+                $("input[name=deduct_failed_reason]").attr("disabled", "disabled");
+            } else if (val == "失败") {
+                $("input[name=deduct_amount]").attr("disabled", "disabled");
+                $("input[name=deduct_failed_reason]").removeAttr("disabled");
+            }
+        });
+    });
+</script>

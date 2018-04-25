@@ -1,0 +1,635 @@
+﻿@{
+    ViewBag.Title = "授权员交易授权";
+}
+<style type="text/css">
+    .con-map2 {
+        margin: auto;
+        margin-top: 5px;
+        border: 1px solid #d5d5d5;
+        padding: 10px 10px;
+        position: relative;
+        background-color: white;
+        clear: both;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0px 20px;
+        border: 1px solid #101622;
+        border-radius: 5px;
+    }
+
+        table td {
+            padding: 0px 3px;
+        }
+
+    .text-left {
+        text-align: left;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .text-red {
+        color: red;
+    }
+
+    .slectstyle select {
+        cursor: pointer;
+        width: 100%;
+        height: 20px;
+        line-height: 20px;
+        border: 1px solid #d2d2d2;
+        background: url(/Image/slectbj.png) no-repeat right;
+    }
+
+        .slectstyle select:focus {
+            outline: none;
+            border: 1px solid #92c978;
+            background: url(/Image/slectbjdj.png) no-repeat right;
+        }
+
+        .slectstyle select option:checked {
+            background-image: linear-gradient(#fada00, #fada00);
+        }
+
+    .inputstyle input {
+        width: 100%;
+        border: 1px solid #d2d2d2;
+        height: 20px;
+        line-height: 20px;
+    }
+
+        .inputstyle input:focus {
+            outline: none;
+            border: 1px solid #92c978;
+        }
+
+    .bg-gray {
+        background-color: #f6f6f6;
+    }
+
+    .top-title {
+        position: absolute;
+        top: -12px;
+        left: 30px;
+        background-color: white;
+    }
+
+    .bottom {
+        clear: both;
+        width: 580px;
+        margin: auto;
+    }
+
+        .bottom button {
+            cursor: pointer;
+            margin-right: 15px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            padding: 8px 5px;
+            border: 1px solid #9c9c9c;
+            background: none;
+            color: #181818;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    ul {
+        list-style-type: none;
+    }
+
+    .box ul {
+        height: 22px;
+        border: 1px solid #48515a;
+        border-bottom: none;
+        padding-top: 2px;
+        background: -webkit-linear-gradient(top, #deeafa, #f3f4f9);
+        background: -o-linear-gradient(top, #deeafa, #f3f4f9);
+        background: -moz-linear-gradient(top, #deeafa, #f3f4f9);
+        background: linear-gradient(to top, #deeafa, #f3f4f9);
+    }
+        /*position:relative;用于IE7上面*/
+
+        .box ul li {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            float: left;
+            border: 1px solid #4a6e9e;
+            margin-right: 0px;
+            padding: 0 10px;
+            border-bottom: none;
+            position: relative;
+            cursor: pointer;
+            background: #dfe3e8;
+        }
+
+    .content {
+        border: 1px solid #101622;
+        /*	height: 145px;*/
+        padding: 5px;
+    }
+
+    * html .content {
+        margin-top: -1px;
+    }
+    /*用于IE6上面*/
+
+    .box ul li.one {
+        border-top: 2px solid red;
+        background: #e3e3e5;
+    }
+    /*蓝色背景样式*/
+
+    .bankmap {
+        background-color: #4a6e9e;
+        width: 1200px;
+        margin: auto;
+        padding-bottom: 10px;
+    }
+
+    .sousuo {
+        position: absolute;
+        margin-top: 5px;
+        margin-left: 5px;
+        cursor: pointer;
+    }
+    /*授权页面新增样式*/
+
+    .banktop {
+        height: 30px;
+    }
+
+    .map_left {
+        float: left;
+        background-color: white;
+        width: 604px;
+    }
+
+    .content_map {
+        background-color: white;
+        width: 1180px;
+        margin: auto;
+        height: 720px;
+    }
+
+    .kz_title {
+        height: 30px;
+        line-height: 30px;
+        background: -webkit-linear-gradient(top, #e7e7e7, #f1f1f1);
+        background: -o-linear-gradient(top, #e7e7e7, #f1f1f1);
+        background: -moz-linear-gradient(top, #e7e7e7, #f1f1f1);
+        background: linear-gradient(to top, #e7e7e7, #f1f1f1);
+    }
+
+    .map_right {
+        padding-left: 5px;
+        float: left;
+        background-color: white;
+        width: 570px;
+    }
+
+    .tishi {
+        border: 1px solid #d5d5d5;
+        height: 95px;
+        padding: 5px 0px 5px 20px;
+        overflow-x: auto;
+        white-space: nowrap;
+        line-height: 30px;
+    }
+
+    .sq_bt {
+        border-radius: 5px;
+        background-color: #505d70;
+        color: white;
+        padding: 5px 3px;
+    }
+
+    /*授权表格样式*/
+    .sq_table {
+        height: 160px;
+        border: 1px solid #8a9294;
+        margin-right: 3px;
+        overflow-x: auto;
+    }
+
+        .sq_table table {
+            border: none;
+            width: 750px;
+            border-spacing: 0px 0px;
+        }
+
+            .sq_table table th {
+                color: #ffffff;
+                text-align: center;
+                padding: 5px 5px;
+                background: -webkit-linear-gradient(top, #385a7f, #437fb1);
+                background: -o-linear-gradient(top, #385a7f, #437fb1);
+                background: -moz-linear-gradient(top, #385a7f, #437fb1);
+                background: linear-gradient(to top, #385a7f, #437fb1);
+                border-right: 1px solid white;
+            }
+
+            .sq_table table tr td {
+                text-align: center;
+                padding: 5px 5px;
+                background-color: #d0d8e3;
+                border: 1px solid #263441;
+            }
+
+    .bt_sq {
+        cursor: pointer;
+        background-color: #dedede;
+        border: 1px solid #747474;
+    }
+
+    .number_bj {
+        height: 225px;
+        border: 1px solid #e0e0e0;
+        margin-right: 3px;
+        background: -webkit-linear-gradient(top, #e5e5e5, #ffffff);
+        background: -o-linear-gradient(top, #e5e5e5, #ffffff);
+        background: -moz-linear-gradient(top, #e5e5e5, #ffffff);
+        background: linear-gradient(to top, #e5e5e5, #ffffff);
+        text-align: center;
+    }
+
+    .sq_input input {
+        margin-top: 5px;
+        width: 550px;
+        height: 25px;
+        border: 1px solid #d2d2d2;
+        background: url(/Image/banksousuo.png) right no-repeat;
+    }
+
+        .sq_input input:focus {
+            outline: none;
+            border: 1px solid #92c978;
+        }
+
+    .sq_person {
+        margin: auto;
+        margin-top: 10px;
+        width: 300px;
+        height: 30px;
+        line-height: 30px;
+    }
+</style>
+<link href="~/Script/layer/skin/layer.css" rel="stylesheet" />
+
+<!--外围背景区域-->
+<div class="bankmap">
+    <!--头部信息-->
+    <div class="banktop">
+        <span style="float: left; margin-top: 5px; margin-left: 7px; color: white;">
+            <img style="float: left;" src="/Image/topleft.png" />授权员交易授权
+		</span>
+        <span style="float: right; margin-right: 7px; margin-top: 5px;">
+            <img src="/Image/topright.png" />
+        </span>
+    </div>
+    <!--头部信息结束-->
+    <div class="content_map">
+        <div class="map_left">
+            <div class="kz_title">
+                <img src="/Image/titile.png" style="float: left;" />
+                原交易码快照-【02321-冻结业务】
+				
+            </div>
+            <div class="con-map2">
+                <table id="table_con" border="0" cellspacing="0" cellpadding="0" style="background: #f2f7fc; padding: 5px;">
+                    <tr>
+                        <td class="text-right">账/卡号</td>
+                        <td class="inputstyle">
+                            <input style="width: 90%;" type="text" name="" id="" value="" />
+                            <img class="sousuo" src="/Image/banksousuo.png" /></td>
+                        <td class="text-right">序号</td>
+                        <td class="slectstyle">
+                            <select style="width: 90%;" name="">
+                                <option disabled="" style="background-color: blue; color: #fff;" value="">
+                                    <span>序号值含义</span>
+                                </option>
+                                <option value="0">0-1个人银行结算业务</option>
+                            </select>
+                            <img class="sousuo" src="/Image/banksousuo.png" />
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="text-right">账户名称</td>
+                        <td colspan="3" class="inputstyle">
+                            <input type="text" name="" id="" value="农信人" /></td>
+                    </tr>
+
+                    <tr>
+                        <td class="text-right">币种</td>
+                        <td class="slectstyle">
+                            <select name="">
+                                <option disabled="" style="background-color: blue; color: #fff;" value="">
+                                    <span>币种值含义</span>
+                                </option>
+                                <option value="">CNY-人民币</option>
+                            </select>
+                        </td>
+                        <td class="text-right">产品代码</td>
+                        <td class="slectstyle">
+                            <select name="">
+                                <option disabled="" style="background-color: blue; color: #fff;" value="">
+                                    <span>产品代码含义</span>
+                                </option>
+                                <option value="">11011-个人银行结算存款</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">账户余额</td>
+                        <td class="inputstyle">
+                            <input type="text" name="" id="" value="" /></td>
+                        <td class="text-right">可用余额</td>
+                        <td class="inputstyle">
+                            <input type="text" name="" id="" value="" /></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="con-map2">
+                <div class="box">
+                    <ul>
+                        <li class="one">冻结信息</li>
+                        <li>执行人信息</li>
+                    </ul>
+
+                    <div class="content">
+                        <div class="ct">
+                            <table id="table_con" border="0" cellspacing="0" cellpadding="0" style="background: #f2f7fc; padding: 5px;">
+                                <tr>
+                                    <td>冻结方式</td>
+                                    <td class="slectstyle">
+                                        <select name="">
+                                            <option disabled="" style="background-color: blue; color: #fff" value="">
+                                                <span>冻结方式值含义</span>
+                                            </option>
+                                            <option value="">1-不进不出</option>
+                                            <option value="">2-只进不出</option>
+                                        </select>
+                                    </td>
+                                    <td class="text-right">证件号码</td>
+                                    <td class="inputstyle">
+                                        <input type="text" name="" id="" value="" /></td>
+                                </tr>
+                                <tr>
+                                    <td>冻结到期日期</td>
+                                    <td class="inputstyle">
+                                        <input style="width: 90%;" type="text" name="" id="" value="" />
+                                        <img class="sousuo" src="/Image/banksousuo.png" /></td>
+                                    <td class="text-right">权力机关类型</td>
+                                    <td class="slectstyle">
+                                        <select name="">
+                                            <option disabled="" style="background-color: blue; color: #fff;" value="">
+                                                <span>权力机关类型值含义</span>
+                                            </option>
+                                            <option value="">0-4公安机关</option>
+                                        </select>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>冻结通知书号</td>
+                                    <td colspan="3" class="inputstyle">
+                                        <input type="text" name="" id="" value="" /></td>
+                                </tr>
+                                <tr>
+                                    <td>申请冻结单位</td>
+                                    <td colspan="3" class="inputstyle">
+                                        <input type="text" name="" id="" value="" /></td>
+                                </tr>
+                                <tr>
+                                    <td>摘要</td>
+                                    <td colspan="3" class="inputstyle">
+                                        <input type="text" name="" id="" value="" /></td>
+                                </tr>
+
+                            </table>
+
+                        </div>
+                        <div class="ct">
+                            <table id="table_con" border="0" cellspacing="0" cellpadding="0" style="background: #f2f7fc; padding: 5px;">
+                                <tr>
+                                    <td style="width: 140px;">执行人-证件类型</td>
+                                    <td colspan="" class="slectstyle">
+                                        <select name="">
+                                            <option disabled="" style="background-color: blue; color: #fff" value="">
+                                                <span>执行人-证件类型值含义</span>
+                                            </option>
+                                            <option value="">C-营业执照</option>
+                                            <option value="">K-批文</option>
+                                            <option value="">6-单位结算户</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>执行人-证件号码</td>
+                                    <td class="inputstyle">
+                                        <input type="text" name="" id="" value="" /></td>
+                                </tr>
+
+                                <tr>
+                                    <td>执行人-联系方式</td>
+                                    <td class="inputstyle">
+                                        <input type="text" name="" id="" value="" /></td>
+                                </tr>
+                                <tr>
+                                    <td>执行人-二证件类型</td>
+                                    <td colspan="3" class="slectstyle">
+                                        <select style="width: 97%;" name="">
+                                            <option disabled="" style="background-color: blue; color: #fff" value="">
+                                                <span>证明文件类型值含义</span>
+                                            </option>
+                                            <option value="">C-营业执照</option>
+                                            <option value="">K-批文</option>
+                                            <option value="">6-单位结算户</option>
+                                        </select>
+                                        <span class="text-red">!</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>执行人-二证件号码</td>
+                                    <td class="inputstyle">
+                                        <input type="text" name="" id="" value="" /></td>
+                                </tr>
+                                <tr>
+                                    <td>执行人二-联系方式</td>
+                                    <td class="inputstyle">
+                                        <input type="text" name="" id="" value="" /></td>
+                                </tr>
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="con-map2">
+                <table id="table_con" border="0" cellspacing="0" cellpadding="0" style="background: #f2f7fc; padding: 5px;">
+                    <tr>
+                        <td>冻结日期</td>
+                        <td class="inputstyle">
+                            <input type="text" name="" id="" value="" /></td>
+                        <td class="text-right">冻结序号</td>
+                        <td class="inputstyle">
+                            <input type="text" name="" id="" value="" /></td>
+                    </tr>
+
+                </table>
+
+            </div>
+        </div>
+        <!--右侧信息提示区域-->
+        <div class="map_right">
+            <div class="kz_title">
+                <img src="/Image/titile.png" style="float: left;" />
+                关键提示信息（2项）
+				
+            </div>
+            <div class="tishi">
+                提示：该账户信息已被冻结，是否继续。<br />
+                <div>
+                    提醒：此冻结为轮候冻结，待登记在先的冻结满足条件或失效后，执行本次冻结(此处内容向右拖动查看)	
+				
+                </div>
+            </div>
+            <div class="kz_title">
+                <img src="/Image/titile.png" style="float: left;" />
+                授权基本信息
+			   
+            </div>
+            <div class="">
+                <table border="0" cellspacing="0" cellpadding="0" style="border: none; border-spacing: 0px 8px; color: #505d70;">
+                    <tr style="height: 30px;">
+                        <td><span class="sq_bt">授权代码</span> 685965</td>
+                        <td><span class="sq_bt">原操作员</span> 105893-刘剑</td>
+                    </tr>
+
+                    <tr style="height: 30px;">
+                        <td><span class="sq_bt">授权原因</span> </td>
+                        <td><span class="sq_bt">原复核员</span> -</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="sq_table" id="grant_operations">
+                <table border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <th>授权操作</th>
+                        <th>序号</th>
+                        <th>授权结果</th>
+                        <th>授权方式</th>
+                        <th>柜员级别要求</th>
+                        <th>授权人</th>
+                        <th>授权人名</th>
+                        <th>拒绝原因</th>
+                        <th>看不清</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="bt_sq">
+                                <img src="/Image/sq_bt.png" style="float: left; margin-right: 5px;" />授 &nbsp;&nbsp;权</button></td>
+                        <td>5</td>
+                        <td>N-未授权</td>
+                        <td>L-本地授权</td>
+                        <td>Z6-6级</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="kz_title">
+                <img src="/Image/titile.png" style="float: left;" />
+                授权序号 &nbsp;&nbsp;5
+			   
+            </div>
+            <div class="number_bj" >
+                <div class="sq_input">
+                    <input type="text" name="auth_id_text" id="auth_id_text" value="" placeholder="授权员操作（F11）：请输入授权员号，按回车" />
+                </div>
+                <div class="sq_person p1">
+                    <img src="/Image/sq_person.png" style="float: left;" />
+                    授权验证区域，请先确认授权员。 
+                </div>
+                <div class="sq_person p2" style="width:350px;display:none;">
+                     <img src="/Image/sq_person.png" style="float: left;" />
+                     当前授权员：[143276]石明钦 静态密码验证
+                    <input type="password" name="auth_password" style="width:295px; height:22px; padding-left:5px;" />
+                </div>
+            </div>
+
+            <div class="bottom">
+                <span>
+                    <button>退出（F3）</button>
+                    <button>刷新（F5）</button></span>
+                <span style="float: right;">
+                    <button style="margin-right: 18px;" id="submit">提交（F6）</button></span>
+                <span style="float: right;">
+                    <button style="margin-right: 5px;">修改（F8）</button></span>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="~/Script/jquery-3.2.0.js"></script> 
+<script src="~/Script/layer/layer.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() { //切换标签
+			$('.ct:gt(0)').hide()
+			$('.box ul li').click(function() {
+				$(this).addClass("one")
+					.siblings().removeClass();
+				//获取当前标签的索引值             
+				var content_idnex = $('.box ul li').index(this);
+				$('.ct').eq(content_idnex).show()
+					.siblings().hide();
+			});
+
+		});
+
+		$(function () {
+		    $("#auth_id_text").keyup(function (e) {
+		        var key_code = e.keyCode;
+		        if (key_code == 13) { 
+		            var auth_id = $(this).val().trim();
+		            if (auth_id == "143276") {
+		                $(".p1").hide();
+		                $(".p2").show();
+		                $("input[name=auth_password]").focus();
+		            } 
+		        }
+		    });
+		    $("#submit").click(function () {
+		        var password = $("input[name=auth_password]").val();
+		        if (password == "12345654") {
+		            layer.alert("交易【冻结业务】执行成功！");
+		            $(".p1").show();
+		            $(".p2").hide();
+		            $("#auth_id_text").val("");
+		            $("input[name=auth_password]").val("");
+		        } else {
+		            if (password != "" && password != null) {
+		                layer.alert('授权员密码错误');
+		            } 
+		        }
+		    });
+		});
+	</script>

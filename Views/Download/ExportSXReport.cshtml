@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="/Script/jquery-1.8.3.min.js"></script>
+    <script>
+        //导出
+        function ExportScores() {
+            var department = '@Request["department"]';
+            var train = '@Request["train"]';
+            var stu = '@Request["stu"]';
+            var conditionClass = '@Request["conditionClass"]';
+            var accountNo = '@Request["accountNo"]';
+            var teacherid = '@Request["teacherid"]';
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: '/Download/ExportSXReport',
+                data: { "department": department, "train": train, "stu": stu, "conditionClass": conditionClass, "accountNo": accountNo, "teacherid": teacherid },
+                async: false,
+                success: function (data) {
+                    if (data.succ) {
+                        location.href = "/ashx/download.ashx?downurl=" + data.path;
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            });
+          }
+    </script>
+</head>
+<body>
+    <div>
+        <p>数据已经生成,请点击下载</p>
+        <button onclick="ExportScores()" class="btn btn-info btn-sm" type="button"><i class="fa fa-level-up  m-r-xs"></i><span class="bold">下载</span></button>
+    </div>
+    <a id='downFile' href="" style="display: none"><span id='export'></span></a>
+</body>
+</html>
+
+

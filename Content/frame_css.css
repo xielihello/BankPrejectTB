@@ -1,0 +1,411 @@
+﻿body {
+    font: 12px/20px "微软雅黑", "宋体", Arial, sans-serif, Verdana, Tahoma;
+}
+
+a:link {
+    text-decoration: none;
+    color: #333333;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+.cs-north {
+    height: 50px;
+    background: #B3DFDA;
+}
+
+.cs-north-bg {
+    width: 100%;
+    height: 100%;
+    background: url(/Content/images/t01634bd7d8ff019703.jpg) repeat-x;
+}
+
+.cs-north-logo {
+    padding: 15px 0px 0px 5px;
+    color: Black;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.cs-west {
+    width: 200px;
+    padding: 0px;
+    border-left: 1px solid #99BBE8;
+}
+
+.cs-navi-tab {
+    padding: 5px;
+    color: #333333;
+}
+
+.cs-tab-menu {
+    width: 120px;
+}
+
+.cs-home-remark {
+    padding: 10px;
+}
+
+.icon-nav {
+    background: url('/Content/images/tabicons.png');
+    background-repeat: no-repeat;
+    background-position: -100px -20px;
+}
+
+.easyui-accordion ul {
+    list-style: none;
+    padding-left: 15px;
+}
+
+.pli {
+    margin: 3px 0;
+    padding-left: 10px;
+    padding-top: 2px;
+    line-height: 25px;
+    width: 80%;
+    border: 1px dashed #fff;
+}
+
+.pli2 {
+    margin: 3px 0;
+    padding-left: 10px;
+    padding-top: 2px;
+    line-height: 25px;
+    width: 80%;
+    border: 1px dashed #ccc;
+    background-color: #f5f5f5;
+}
+
+.layout-split-north {
+    border-bottom: none 0;
+}
+
+.head-title {
+    font-size: 18px;
+    font-family: 微软雅黑;
+    line-height: 35px;
+    padding-left: 8px;
+    font-weight: bold;
+    float: left;
+}
+
+.head-r-w {
+    float: right;
+    line-height: 35px;
+    display: none;
+}
+
+.avatar {
+    width: 24px;
+    height: 24px;
+}
+
+.avatar-wrap {
+    float: left;
+    position: relative;
+    top: 3px;
+    right: 3px;
+    display: none;
+}
+
+.app-list {
+    overflow: auto;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    margin-right: 250px;
+}
+
+    .app-list li {
+        float: left;
+        width: 88px;
+        height: 88px;
+        padding-left: 10px;
+    }
+
+        .app-list li:hover {
+        }
+
+.app-wrap {
+    border: solid 1px #ccc;
+    border-radius: 3px 3px 3px 3px;
+    background-color: #DEEEFD;
+}
+
+.app-list li:hover .app-wrap {
+    background-color: #cbddf9;
+}
+
+.app-list li .app-img-wrap {
+    height: 66px;
+    background: url() no-repeat center center;
+    display: block;
+    text-decoration: none;
+}
+
+.app-list li .app-title {
+    line-height: 20px;
+    text-align: center;
+    color: #555;
+}
+
+.desk-right {
+    width: 240px;
+    float: right;
+}
+
+.anno-hd {
+    background: url(/Content/images/699508_1451252140.png) no-repeat -320px -49px;
+    height: 48px;
+    line-height: 40px;
+    text-indent: 12px;
+    color: #555;
+    font-weight: bold;
+}
+
+.anno-body {
+    height: 300px;
+    border: solid 1px #e0e0e0;
+    border-top: none 0;
+    float: left;
+    position: relative;
+    left: 8px;
+}
+
+.anno-body-inner {
+    width: 218px;
+}
+
+.anno-list {
+    color: #555;
+    line-height: 20px;
+    padding: 0;
+    margin-left: 25px;
+    list-style: none;
+}
+
+.anno-title {
+    float: left;
+    width: 138px;
+    height: 20px;
+    overflow: hidden;
+}
+
+.anno-date {
+    margin-left: 142px;
+}
+
+.theme-list {
+    overflow: auto;
+    float: left;
+    width: 122px;
+    overflow: hidden;
+}
+
+    .theme-list li {
+        float: left;
+        display: block;
+        width: 10px;
+        height: 10px;
+        border: solid 1px #ccc;
+        cursor: pointer;
+        margin-left: 5px;
+    }
+
+        .theme-list li.t-default {
+            background-color: #E0ECFF;
+        }
+
+        .theme-list li.t-blue {
+            background-color: #DAEEF5;
+        }
+
+        .theme-list li.t-green {
+            background-color: #E5F0C9;
+        }
+
+        .theme-list li.t-gray {
+            background-color: #C7CCD1;
+        }
+
+        .theme-list li.t-orange {
+            background-color: #F0E3BF;
+        }
+
+        .theme-list li.t-red {
+            background-color: #F0E1E3;
+        }
+
+#tabs .tabs-header {
+    background-color: White;
+}
+
+.pli img {
+    vertical-align: middle;
+    border: none;
+}
+
+.qgli {
+    display: none;
+}
+
+.txt01 {
+    border: 1px solid #cccccc;
+    height: 22px;
+    padding-left: 5px;
+}
+
+
+.desktop {
+    width: 100%;
+    height: 100%;
+}
+
+.quick-bar-item {
+    width: 80px;
+    height: 100px;
+    border: 1px solid #CCCCCC;
+    list-style: none;
+    margin: 8px 8px 0px 8px;
+    cursor: pointer;
+    border-radius: 5px;
+    position: relative;
+}
+
+    .quick-bar-item:hover {
+        border: 1px solid #95B8E7;
+    }
+
+    .quick-bar-item .icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto;
+        margin-top: 10px;
+        background-image: url(/Content/images/bill.png);
+        background-repeat: no-repeat;
+        border-radius: 5px;
+    }
+
+    .quick-bar-item .title {
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        color: #333333;
+    }
+
+    .quick-bar-item .quick-bar-cover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+    }
+
+        .quick-bar-item .quick-bar-cover .bars-del {
+            display: inline-block;
+            float: right;
+        }
+
+.opactity-40 {
+    background-color: black;
+    opacity: 0.40;
+    filter: alpha(opacity=40);
+    -moz-opacity: 0.4;
+}
+
+.add-quick-bar {
+    background-image: url(/Content/images/bill.png);
+    background-repeat: no-repeat;
+    background-position: -579px -1045px;
+}
+/*采购入库*/
+.quick-bar-icon-01 {
+    background-position: -50px -126px;
+}
+/*采购退货*/
+.quick-bar-icon-02 {
+    background-position: -48px -244px;
+}
+/*销售出库*/
+.quick-bar-icon-03 {
+    background-position: -229px -126px;
+}
+/*销售退货*/
+.quick-bar-icon-04 {
+    background-position: -232px -480px;
+}
+/*采购报表*/
+.quick-bar-icon-05 {
+    background-position: -227px -710px;
+}
+/*销售报表*/
+.quick-bar-icon-06 {
+    background-position: -227px -820px;
+}
+/*查库存*/
+.quick-bar-icon-07 {
+    background-position: -410px -473px;
+}
+/*出入库明细*/
+.quick-bar-icon-08 {
+    background-position: -52px -360px;
+}
+/*操作员管理*/
+.quick-bar-icon-09 {
+    background-position: -585px -937px;
+}
+/*供应商管理*/
+.quick-bar-icon-10 {
+    background-position: -585px -475px;
+}
+/*仓库管理*/
+.quick-bar-icon-11 {
+    background-position: -232px -1055px;
+}
+/*费用名目*/
+.quick-bar-icon-12 {
+    background-position: -407px -590px;
+}
+/*银行账户*/
+.quick-bar-icon-13 {
+    background-position: -584px -245px;
+}
+/*操作日志*/
+.quick-bar-icon-14 {
+    background-position: -227px -590px;
+}
+/*角色管理*/
+.quick-bar-icon-15 {
+    background-position: -48px -1055px;
+}
+/*报损单*/
+.quick-bar-icon-16 {
+    background-position: -407px -358px;
+}
+/*报溢单*/
+.quick-bar-icon-17 {
+    background-position: -48px -710px;
+}
+/*库存盘点单*/
+.quick-bar-icon-18 {
+   background-position: -410px -126px;
+}
+/*报损报溢表*/
+.quick-bar-icon-19 {
+   background-position: -410px -242px;
+}
+/*库存盘点表*/
+.quick-bar-icon-20 {
+   background-position: -48px -1175px;
+}

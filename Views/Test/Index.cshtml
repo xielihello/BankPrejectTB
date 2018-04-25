@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Script/jquery-3.2.0.js"></script>
+
+<a id="a" href="javascript:void(0);">一个按钮</a>
+<script type="text/javascript">
+    $(function () {
+        $("#a").click(function () {
+            alert("第一个click");
+        });
+        $("#a").click(function () {
+            alert("第二个click");
+        });
+    });
+</script>

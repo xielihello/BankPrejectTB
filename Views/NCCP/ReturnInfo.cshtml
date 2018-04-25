@@ -1,0 +1,44 @@
+﻿ <script type="text/javascript">
+    $(function () {
+        var apply_id = '@ViewBag.apply_id';
+ 
+        $("#dg2").datagrid({
+            nowrap: true,
+            idField: 'id',
+            height: 260,
+            url: '/nccp/returninfo/?apply_id='+apply_id,
+            loadMsg: '数据加载中.....',
+            pagination: true,
+            rownumbers: true,
+            singleSelect: true,
+            pageSize: 20,
+            pageList: [20, 30, 50],
+            striped: true,
+            columns: [[
+                { title: 'id', field: 'id', hidden: true, align: 'center', width: 200 },
+                { title: '请求单号', field: 'apply_number', align: 'center', width: 200 },
+                { title: '回退原因', field: 'reason', align: 'center', width: 200 },
+                { title: '回退原因备注', field: 'remark', align: 'center', width: 200 },
+                { title: '回退联系人', field: 'return_conn', align: 'center', width: 200 },
+                { title: '回退联系人电话', field: 'return_conn_phone', align: 'center', width: 200 }
+                
+            ]],
+           
+            onLoadError: function () { $.messager.alert('系统错误', '读取远程数据失败!', 'warning'); },
+            onLoadSuccess: function (data) {
+                 
+            }
+        });
+        var p = $('#dg2').datagrid('getPager');
+        $(p).pagination({
+            beforePageText: '第 ',
+            afterPageText: ' 页 共 {pages} 页',
+            displayMsg: '从 第 {from} 条到 {to} 条 共 {total} 条'
+        });
+
+       
+    });
+     
+</script> 
+ 
+<table id="dg2"></table>

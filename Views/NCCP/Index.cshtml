@@ -1,0 +1,114 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title></title>
+    <script src="/Script/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="/Script/jquery-easyui-1.4.4/jquery.easyui.min.js"></script>
+    <link href="/Script/jquery-easyui-1.4.4/themes/default/easyui.css" rel="stylesheet" />
+    <link href="/Script/jquery-easyui-1.4.4/themes/icon.css" rel="stylesheet" />
+    <link href="/Content/global.css?v=1.0.0.0" rel="stylesheet" type="text/css" />
+    <link href="/Content/clear.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/frame_css.css?v=1.0.0.1" rel="stylesheet" />
+    <script src="/Script/frame_js.js?v=1.0.0.1"></script>
+</head>
+<body class="easyui-layout">
+    <div region="north" border="true" class="cs-north">
+        <div class="cs-north-bg">
+            <div class="cs-north-logo">
+                <div style="float: left;">
+                    <b>
+                        <span id="AgentName">法院"总对总"网络查控执行系统</span>
+                    </b>
+                </div>
+                <div style="float: right; padding-right: 20px;">
+                    @*<span style="font-size: 12px;">您好,<span id="user_name">登录名</span> | <a style="cursor: pointer;" class="upPwd">[修改密码]</a> | <a style="cursor: pointer;" class="logout">[退出] </a></span>*@
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+    </div>
+    <div region="west" border="true" split="true" title='法院"总对总"网络查控执行系统' class="cs-west" style="width: 240px;">
+        <div class="easyui-accordion" fit="true" border="false">
+            <div title="扣划" data-options="iconCls:'icon-file'">
+                <ul>
+                    <li class="pli">
+                        <a href="javascript:void(0);" src="../nccp/deduct" class="cs-navi-tab">
+                            <img src="/Content/images/tab2.png" />
+                            扣划请求查询及结果反馈
+                        </a>
+                    </li>
+                    <li class="pli">
+                        <a href="javascript:void(0);" src="javascript:void(0);" class="cs-navi-tab">
+                            <img src="/Content/images/tab2.png" />
+                            扣划结果查询
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div title="查询" data-options="iconCls:'icon-file'">
+                <ul>
+                </ul>
+            </div>
+            <div title="冻结" data-options="iconCls:'icon-file'">
+                <ul>
+                </ul>
+            </div>
+
+
+
+        </div>
+    </div>
+    <div id="mainPanle" region="center" border="true">
+        <div id="tabs" class="easyui-tabs" fit="true" border="false">
+            <div title="桌面" style="padding: 20px; overflow: hidden; color: red;">
+                <div class="desktop">
+                    <div class="float-left">
+                        @*<div id="quick_bar" class="easyui-panel" title="快捷栏" style="width: 606px; min-height: 280px;padding: 8px 8px 15px 8px; margin-bottom: 5px;">
+                            <ul>
+                                <li class="quick-bar-item float-left">
+                                    <div class="icon quick-bar-icon-15">
+                                    </div>
+                                    <div class="title">
+                                        角色管理
+                                    </div>
+                                </li>
+                                <li class="quick-bar-item float-left add-quick-bar"></li>
+                            </ul>
+                        </div>*@
+                    </div>
+                    <div class="float-right">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div region="south" border="false" class="cs-south">
+        <!--页脚-->
+    </div>
+    <div id="mm" class="easyui-menu cs-tab-menu">
+        <div id="mm-tabupdate">
+            刷新
+        </div>
+        <div class="menu-sep">
+        </div>
+        <div id="mm-tabclose">
+            关闭
+        </div>
+        <div id="mm-tabcloseother">
+            关闭其他
+        </div>
+        <div id="mm-tabcloseall">
+            关闭全部
+        </div>
+    </div>
+
+    @*<div id="quick_bar_dialog" class="easyui-dialog" title="快捷栏" style="width:622px;height:400px;" data-options="modal:true,closed:true">
+    
+    </div>*@
+
+</body>
+</html>

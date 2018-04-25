@@ -1,0 +1,335 @@
+﻿@{
+    ViewBag.Title = "打印";
+}
+
+<style type="text/css">
+    .print_map {
+        position: relative;
+        width: 869px;
+        height: 497px;
+        margin: auto;
+    }
+
+    .print_list {
+        position: absolute;
+        top: 40px;
+        left: 16px;
+    }
+
+        .print_list table {
+            width: 354px;
+            border-left: 1px solid #121824;
+        }
+
+            .print_list table th {
+                height: 25px;
+                line-height: 25px;
+                color: white;
+                font-size: 14px;
+                font-weight: 400;
+                background: url(/Image/dythbj.png);
+                border-right: 1px solid #ffffff;
+            }
+
+            .print_list table tr:hover {
+                cursor: pointer;
+                background-color: #6d8db4;
+            }
+
+            .print_list table tr td {
+                color: #556880;
+                padding: 3px 0px;
+                border-right: 1px solid #121824;
+                border-bottom: 1px solid #121824;
+                text-indent: 2px;
+            }
+
+    .print_title {
+        position: absolute;
+        top: 48px;
+        right: 18px;
+        width: 465px;
+        height: 100px;
+        font-size: 24px;
+        font-weight: 800;
+    }
+
+    .dx_radio {
+        position: absolute;
+        top: 182px;
+        right: 340px;
+        font-size: 20px;
+    }
+
+    .dx_radio_two {
+        position: absolute;
+        top: 182px;
+        right: 163px;
+        font-size: 20px;
+    }
+
+    .dy_input {
+        height: 28px;
+        width: 63px;
+        color: #898c8e;
+        text-indent: 2px;
+        position: absolute;
+        top: 210px;
+        right: 210px;
+    }
+
+    .dy_input_two {
+        height: 28px;
+        width: 63px;
+        color: #898c8e;
+        text-indent: 2px;
+        position: absolute;
+        top: 210px;
+        right: 60px;
+    }
+
+    .bottom_bt {
+        position: absolute;
+        width: 463px;
+        bottom: 50px;
+        right: 15px;
+    }
+
+        .bottom_bt img {
+            float: left;
+            margin-right: 3px;
+            margin-top: 3px;
+        }
+
+        .bottom_bt button {
+            cursor: pointer;
+            background-color: #f3f7fa;
+            border: 1px solid #9f9fa1;
+            border-radius: 5px;
+            height: 35px;
+            line-height: 35px;
+        }
+
+            .bottom_bt button:hover {
+                background-color: #d4e6fa;
+            }
+
+    .m-r-8 {
+        margin-right: 8px;
+    }
+
+    .cd_bt {
+        cursor: pointer;
+        background-color: #dedede;
+        border: 1px solid #747474;
+        padding: 5px 2px;
+    }
+
+        .cd_bt img {
+            float: left;
+            margin-right: 5px;
+        }
+</style>
+
+
+
+<div class="print_map map_1">
+    <img src="/Image/dayin_bj.jpg" />
+    <div class="print_list">
+        <table border="0" cellspacing=" 0" cellpadding="0" id="print_list">
+            <tr>
+                <th width="31">序号</th>
+                <th>打印项目</th>
+                <th width="70">状态</th>
+            </tr>
+        </table>
+    </div>
+    <div class="print_title">
+        当前打印项： <span class="print_item">1-通用凭证</span> <span class="print_state">准备打印</span>…
+        <br />
+        <div style="text-align: center; margin-top: 18px;">
+            <span class="print_tip">请插入通用凭证</span>
+        </div>
+    </div>
+    <input class="dx_radio" type="radio" name="print" id="print" value="" checked="" />
+    <input class="dx_radio_two" type="radio" name="print" id="print" value="" />
+    <input class="dy_input" type="text" name="" id="" value="1" />
+    <input class="dy_input_two" type="text" name="" id="" value="999" />
+
+    <div class="bottom_bt">
+        <button>
+            <img src="/Image/bt_bdy.png" />不打印</button>
+
+        <span style="float: right;">
+            <button class="m-r-8">
+                <img src="/Image/bt_cs.png" />测试(T)</button>
+            <button class="m-r-8">
+                <img src="/Image/bt_yl.png" />预览(V)</button>
+            <button id="print_now">
+                <img src="/Image/bt_dy.png" />打印(P)</button>
+
+        </span>
+
+    </div>
+</div>
+
+<div class="print_map map_2" style="display: none">
+    <img src="/Image/cxdayin_bj.jpg" />
+    <div class="print_list">
+        <table border="0" cellspacing=" 0" cellpadding="0" id="print_done_list">
+            <tr>
+                <th width="60">重打</th>
+                <th width="31">序号</th>
+                <th>打印项目</th>
+                <th width="70">打印状态</th>
+            </tr>
+        </table>
+    </div>
+</div>
+<script src="~/Script/jquery-3.2.0.js"></script>
+
+
+<script type="text/javascript">
+    var print_array = [];
+    var print_list = '@Request["print_list"]';
+
+    print_array = print_list.trim().split(',');
+    //个人客户身份核实、个人卡内开户、账户止付、解除账户止付、支取密码维护、凭证调剂、现金调剂
+    //print_array = ["通用凭证"];
+    //个人客户身份核实
+    //print_array = ["开户申请书", "通用凭证"];
+    //个人开户
+    //print_array = ["开户申请书", "存折", "通用凭证"];
+    //个人部提业务
+    //print_array = ["取款凭条"];
+    //个人快捷挂失
+    //print_array = ["存折打印", "通用凭证"];
+    //定期销户转开
+    //print_array = ["申请表", "存折", "通用凭证"];
+
+    var print_state = ["未打印", "准备打印", "正在打印", "已打印"];
+    var print_html = "";
+    var print_done_html = "";
+    for (var i = 0; i < print_array.length; i++) {
+        print_html += "<tr " + (i == 0 ? "data-print=\"printing\"" : "") + "><td>" + (i + 1) + "</td><td>" + print_array[i] + "</td><td " + (i == 0 ? "data-state=\"1\"" : "data-state=\"0\"") + ">" + (i == 0 ? print_state[1] : print_state[0]) + "</td></tr>";
+
+        print_done_html += " <tr><td><button data-index=" + (i + 1) + " class=\"cd_bt\"><img src=\"/Image/chongda_bt.png\" />重打</button></td><td>" + (i + 1) + "</td><td>" + print_array[i] + "</td><td>" + print_state[3] + "</td></tr>";
+    }
+    $("#print_list").append(print_html);
+    $("#print_done_list").append(print_done_html);
+
+
+    $("#print_now").click(function () {
+        window.open("http://192.168.1.61:2008/user/print");//node发布地址
+        return;
+        var index = 1;
+        var interval = setInterval(function () {
+
+            var trs = $("#print_list").find("tr");
+            if (index >= trs.length) {
+                $(".print_item").text("无");
+                $(".print_tip").text("打印完毕！");
+                $(".print_state").text("");
+                $(".map_1").hide();
+                $(".map_2").show();
+                clearInterval(interval);
+            }
+            for (var i = 1; i < trs.length; i++) {
+                var data_print = $(trs[i]).attr("data-print");
+                if (data_print == "printing") {
+
+                    var num = $($(trs[i]).find("td")[0]).text();
+                    var print_item_name = $($(trs[i]).find("td")[1]).text();
+                    $(".print_item").text(num + "-" + print_item_name);
+                    $(".print_tip").text("请插入" + print_item_name);
+
+                    var state_td = $(trs[i]).find("td")[2];
+                    var state = Number($(state_td).attr("data-state"));
+                    if (state < print_state.length - 1) {
+                        state = state + 1;
+                        $(state_td).attr("data-state", state);
+                        $(state_td).text(print_state[state]);
+                        $(".print_state").text(print_state[state]);
+
+                    } else {
+                        $(state_td).removeAttr("data-state");
+                        $(trs[i]).removeAttr("data-print");
+                        if ($(trs[i]).next() != undefined) {
+                            $(trs[i]).next().attr("data-print", "printing");
+                            $($(trs[i]).next().find("td")[2]).attr("data-state", "0");
+                            index++;
+                        }
+                    }
+
+                }
+            }
+
+        }, 1000);
+    });
+
+    $(".cd_bt").click(function () {
+
+        var index = Number($(this).attr("data-index"));
+        $(".map_2").hide();
+        $(".map_1").show();
+
+        var tr = $("#print_list").find("tr")[index];
+        var td = $(tr).find("td")[2];
+        $(td).attr("data-state", "1");
+        $(td).text(print_state[1]);
+
+        var num = $($(tr).find("td")[0]).text();
+        var print_item_name = $($(tr).find("td")[1]).text();
+
+        $(".print_item").text(num + "-" + print_item_name);
+        $(".print_tip").text("请插入" + print_item_name);
+        $(".print_state").text(print_state[1]);
+
+        $("#print_now").unbind("click").click(function () {
+            var interval = setInterval(function () {
+
+                var num = $($(tr).find("td")[0]).text();
+                var print_item_name = $($(tr).find("td")[1]).text();
+                $(".print_item").text(num + "-" + print_item_name);
+                $(".print_tip").text("请插入" + print_item_name);
+
+                var state_td = $(tr).find("td")[2];
+                var state = Number($(state_td).attr("data-state"));
+                if (state < print_state.length - 1) {
+                    state = state + 1;
+                    $(state_td).attr("data-state", state);
+                    $(state_td).text(print_state[state]);
+                    $(".print_state").text(print_state[state]);
+
+                } else {
+                    $(state_td).removeAttr("data-state");
+                    $(tr).removeAttr("data-print");
+
+                    //执行完成
+                    $(".map_2").show();
+                    $(".map_1").hide();
+                    clearInterval(interval);
+                }
+            }, 1000);
+        });
+    });
+
+</script>
+<script>
+    var width = window.screen.width;   //获取屏幕宽度
+    if (width == 1920) {
+        document.getElementsByTagName('body')[0].style.zoom = 1;
+    }
+    if (width < 1920) {
+        if (!isIE()) {
+            document.getElementsByTagName('body')[0].style.zoom = 0.74;
+        }  
+    } 
+    function isIE() { //ie?
+        if (!!window.ActiveXObject || "ActiveXObject" in window)
+            return true;
+        else
+            return false;
+    }
+
+</script>

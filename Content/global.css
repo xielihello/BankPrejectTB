@@ -1,0 +1,126 @@
+body {
+    font-size: 12px;
+    font-family: "Microsoft YaHei";
+    color: #232323;
+    background-color: #fff;
+}
+
+a {
+    color: #1A91E3;
+}
+#toolbar{
+    position:relative;
+}
+.datagrid-row {
+    height: 34px;
+}
+
+.search-box {
+    width: 200px;
+    border: 1px solid #cccccc;
+    height:21px;   
+    font-size:12px;
+    padding-left:5px;
+}
+
+.inp-common {
+    width: 150px;
+    border: 1px solid #cccccc;
+    height:21px;   
+    font-size:12px;
+    padding-left:5px;
+}
+.select-common
+{
+    width: 160px;
+    border: 1px solid #cccccc;
+    height:25px;    
+}
+
+/*权限选项样式*/
+.autho {
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 800px;
+}
+
+    .autho table {
+        border-top: 1px solid #cccccc;
+        border-left: 1px solid #cccccc;
+    }
+
+    .autho td {
+        border-bottom: 1px solid #cccccc;
+        border-right: 1px solid #cccccc;
+        padding: 5px;
+    }
+
+    .autho table .title {
+        width: 100px;
+        text-align: center;
+    }
+
+    .autho .btn-item {
+        float: left;
+        margin: 5px 5px;
+        border-radius: 5px;
+        background-color: #efefef;
+        color: #999999;
+        border: 1px solid #D7E9FD;
+    }
+
+    .autho .btn-item-sel {
+        background-color: #3498db;
+        color: white;
+        border: 1px solid #3498db;
+    }
+
+    .autho .btn-item label {
+        margin: 0;
+        padding: 5px 12px;
+        cursor: pointer;
+        display: block;
+    }
+
+    .autho .hide {
+        display: none;
+    }
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.margin-top-10 {
+    margin-top: 10px;
+}
+
+.margin-bottom-10 {
+    margin-bottom: 10px;
+}
+
+.width-80 {
+    width: 80px;
+}
+.absolute{
+  position:absolute;
+}
+.top-2px
+{
+    top:2px;
+}

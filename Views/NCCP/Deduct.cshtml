@@ -1,0 +1,177 @@
+﻿<script src="/Script/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="/Script/jquery-easyui-1.4.4/jquery.easyui.min.js"></script>
+<link href="/Script/jquery-easyui-1.4.4/themes/default/easyui.css" rel="stylesheet" />
+<link href="/Script/jquery-easyui-1.4.4/themes/icon.css" rel="stylesheet" />
+<link href="/Content/global.css?v=1.0.0.0" rel="stylesheet" type="text/css" />
+<link href="/Content/clear.css" rel="stylesheet" type="text/css" />
+<link href="/Content/frame_css.css?v=1.0.0.1" rel="stylesheet" />
+<script src="/Script/frame_js.js?v=1.0.0.1"></script>
+
+
+<script type="text/javascript">
+    $(function () {
+
+        //首次进入页面 清空sessionStorage
+        sessionStorage.clear();
+
+        $("#dg").datagrid({
+            nowrap: true,
+            idField: 'id',
+            height: $(this).height() - 20,
+            url: '/nccp/deduct/',
+            loadMsg: '数据加载中.....',
+            pagination: true,
+            rownumbers: true,
+            singleSelect: true,
+            pageSize: 20,
+            pageList: [20, 30, 50],
+            striped: true,
+            columns: [[
+                { title: 'id', field: 'id', hidden: true, align: 'center', width: 400 },
+                { title: '请求文件名', field: 'file_name', align: 'center', width: 400 },
+                { title: '接收时间', field: 'date_time', align: 'center', width: 200 },
+                { title: '控制类型', field: 'control_type', align: 'center', width: 200 },
+                {
+                    title: '控制请求', field: 'control_apply', align: 'center', width: 200,
+                    formatter: function (val, row) {
+                        return "<button style=\"cursor:pointer;\" onclick=\"apply_info(" + row.id + ")\">" + val + "</button>";
+                    }
+                },
+                {
+                    title: '附件下载', field: 'download', align: 'center', width: 200,
+                    formatter: function (val, row) {
+                        return "<button onclick=\"download(this," + row.id + ",'" + row.download_path + "')\" style=\"cursor:pointer;\">" + val + "</button><button onclick=\"download(" + row.id + ",'" + row.download_path + "')\" style=\"cursor:pointer; display:none;\" disabled=\"disabled\">已下载</button>";
+                    }
+                },
+                { title: '请求退回结果', field: 'apply_return_result', align: 'center', width: 200 },
+                {
+                    title: '回退信息', field: 'return_info', align: 'center', width: 200,
+                    formatter: function (val, row) {
+                        if (row.apply_return_result == "全部退回") {
+                            return "<button style=\"cursor:pointer;\" onclick=\"return_info(" + row.id + ")\">" + val + "</button>";
+                        } else {
+                            return "<button disabled=\"disabled\" style=\"cursor:pointer;\" onclick=\"return_info(" + row.id + ")\">" + val + "</button>";
+                        }
+                    }
+                }
+            ]],
+            toolbar: '#toolbar',
+            onLoadError: function () { $.messager.alert('系统错误', '读取远程数据失败!', 'warning'); },
+            onLoadSuccess: function (data) {
+
+            }
+        });
+        var p = $('#dg').datagrid('getPager');
+        $(p).pagination({
+            beforePageText: '第 ',
+            afterPageText: ' 页 共 {pages} 页',
+            displayMsg: '从 第 {from} 条到 {to} 条 共 {total} 条'
+        });
+
+        $("input[name=keyword]").keyup(function (e) {
+            if (e.keyCode == 13) {
+                search();
+            }
+        });
+    });
+
+
+    var search = function () {
+        var postdata = {};
+        var examid = $("#examid").val();
+        if (examid != null && examid != "") {
+            postdata.examid = examid;
+        }
+        $("#dg").datagrid("load", postdata);
+    }
+
+
+    var return_info = function (id) {
+
+        var width = window.screen.width; //获取屏幕宽度
+        var height = "";
+        var widthtan = ""
+        if (width <= 1920) {
+            height = "90%";
+            widthtan = "90%";
+        }
+     
+        if (width <= 1366) {
+            height = "90%";
+            widthtan = "97%";
+        }
+
+        $("#dialog_return_info").dialog({
+            title: "回退信息",
+            width: widthtan,
+            height: height,
+            closed: false,
+            cashe: false,
+            href: '/nccp/returnInfo/?apply_id=' + id,
+            modal: true,
+            buttons: [
+                    {
+                        text: "关闭",
+                        handler: function () {
+                            $("#dialog_return_info").dialog('close');
+                        }
+                    }]
+        });
+    }
+
+    var apply_info = function (id) {
+        var width = window.screen.width; //获取屏幕宽度
+        var height = "";
+        var widthtan = ""
+        if (width <= 1920) {
+            height = "90%";
+            widthtan = "90%";
+        }
+        if (width <= 1366) {
+            height = "90%";
+            widthtan = "97%";
+        } 
+        $("#dialog_apply_info").dialog({
+            title: "请求信息",
+            width: widthtan,
+            height: height,
+            closed: false,
+            cashe: false,
+            href: '/nccp/applyinfo/?apply_id=' + id,
+            modal: true,
+            buttons: [
+                    {
+                        text: "关闭",
+                        handler: function () {
+                            $("#dialog_apply_info").dialog('close');
+                        }
+                    }]
+        });
+    }
+
+    var download = function (obj, id, url) {
+         
+        $(obj).hide();
+        $(obj).next().show();
+        sessionStorage.fujian_download_sign = true;
+        location.href = url;
+        
+    }
+
+</script>
+
+
+<div id="toolbar">
+    @* <select id="examid">
+        <option value="-1">请选择考题</option>
+        @foreach (var item in ViewBag.plans)
+        {
+             <option value="@item.Id">@item.Plan_Name</option>
+        }
+       
+    </select>
+    <a id="search" href="javascript:search();" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'">查找</a>*@
+</div>
+<table id="dg"></table>
+<div id="dialog_return_info"></div>
+<div id="dialog_apply_info"></div>
